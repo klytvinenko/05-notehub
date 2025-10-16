@@ -7,9 +7,9 @@ export interface Note {
     tag: string
 }
 
-export interface NoteListData {
-  notes: Note[];
-}
+// export interface NoteListData {
+//   notes: Note[];
+// }
  export interface NewNote {
   title: string;
   content: string;

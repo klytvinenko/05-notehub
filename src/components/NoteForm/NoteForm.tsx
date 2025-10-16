@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { createNote } from "../../services/noteService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-interface Props {
+interface NoteFormProps {
   onClose: () => void;
 }
 interface FormValues {
@@ -24,15 +24,13 @@ const OrderValidationSchema = Yup.object().shape({
     .max(50, "Title is too long")
     .required("Required value"),
   content: Yup.string()
-    .min(3, "Content must be at least 3 characters")
-    .max(50, "Content is too long")
-    .required("Required value"),
+    .max(500, "Content is too long"),
   tag: Yup.string()
     .oneOf(["Todo", "Work", "Personal", "Meeting", "Shopping"], "Invalid tag")
     .required("Tag is required"),
 });
 
-const NoteForm = ({ onClose }: Props) => {
+const NoteForm = ({ onClose }: NoteFormProps) => {
 
   const queryClient = useQueryClient();
   const { mutate } = useMutation({

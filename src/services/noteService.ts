@@ -35,7 +35,7 @@ export const fetchNotes = async (
   }
 };
 
-export const createNote = async (values: NewNote) => {
+export const createNote = async (values: NewNote) : Promise<Note | null> => {
   try {
     const res = await axios.post<Note>(
       `https://notehub-public.goit.study/api/notes`,
@@ -54,7 +54,7 @@ export const createNote = async (values: NewNote) => {
   }
 };
 
-export const deleteNote =  async (noteId: string) => {
+export const deleteNote =  async (noteId: string) :  Promise<Note | null> => {
   try {
     const res = await axios.delete<Note>(
       `https://notehub-public.goit.study/api/notes/${noteId}`,
@@ -65,9 +65,10 @@ export const deleteNote =  async (noteId: string) => {
       }
 
     )
-    return res;
+    return res.data;
   } 
   catch(error) {
     console.log(error);
+    return null;
   }
 }
