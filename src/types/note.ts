@@ -10,3 +10,8 @@ export interface Note {
 export interface NoteListData {
   notes: Note[];
 }
+ export interface NewNote {
+  title: string;
+  content: string;
+  tag: string;
+ }
